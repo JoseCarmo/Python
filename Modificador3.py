@@ -2,7 +2,7 @@
 
 ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV0', "r+") # abre o arquivo DADGER.RV0
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # le todas as linhas do DAGDER.RVO, incluindo fins de linhas
-
+print(LINHAS_DADGER)
 LINHAS_TOTAIS = 0 # inicializa o contador de linhas
 
 LINHAS_COM_MP = [] # diferente 
@@ -69,14 +69,6 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
         else:
             placeholder = (placeholder[:5] + str(int(placeholder[5]) - 1) + placeholder[6:])
             LINHAS_DADGER[LINHAS_TOTAIS] = placeholder            
-
-    elif (linhas[0:2]) == "DP":
-        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        if (int(placeholder[5]) == 6):
-            placeholder = ""
-            LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
-        else:
-            pass
             
     # BLOCO PARA OS BLOCOS DE RESTRIÇÕES
     else:
