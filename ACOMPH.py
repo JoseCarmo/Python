@@ -1,5 +1,11 @@
 import csv
-with open('C:\\Users\\Joseeustaquio\\Downloads\\ACOMPH.csv', newline='') as csvfile:
+tabela = []
+relacao_posto_vazao = []
+with open('/home/jose/Downloads/ACOMPH.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     for row in spamreader:
-        print(', '.join(row))
+        tabela.append(row)
+print(tabela)
+
+for item in tabela:
+    
