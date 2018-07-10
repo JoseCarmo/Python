@@ -1,55 +1,50 @@
 # Atualizador para o Decomp 
 
-ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV1', "r+") # abre o arquivo DADGER.RV0
-LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # le todas as linhas do DAGDER.RVO, incluindo fins de linhas
+numero_revisao = 0 
+
+ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV%s' %numero_revisao, "r+") # abre o arquivo DADGER.rvX
+LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
 LINHAS_TOTAIS = 0 # inicializa o contador de linhas
-
-LINHAS_COM_MP = [] # diferente 
-LINHAS_COM_MT = [] # diferente
-LINHAS_COM_FD = [] # diferente 
-LINHAS_COM_VE = [] # diferente
-LINHAS_COM_TI = [] # diferente 
-LINHAS_COM_RQ = [] # diferente
-
 BLOCOS_RESTRICOES = ["FI", "LU", "FU", "LV", "CV", "LQ", "CQ"]
 
 for linhas in LINHAS_DADGER: # corre todas as linhas do script 
+    
     # CT 
     if (linhas[0:2]) == "CT":
-        placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-        placeholder_MP_1 = LINHAS_DADGER[LINHAS_TOTAIS + 1]
-        if int(placeholder_MP[25]) == 1:
-            if placeholder_MP_1[0:2] == "CT" and placeholder_MP[4:7] == placeholder_MP_1[4:7]:
-                    if int(placeholder_MP_1[25]) == 2:
-                        placeholder_MP = "&" + placeholder_MP
-                        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        placeholder_1 = LINHAS_DADGER[LINHAS_TOTAIS + 1]
+        if int(placeholder[25]) == 1:
+            if placeholder_1[0:2] == "CT" and placeholder[4:7] == placeholder_1[4:7]:
+                    if int(placeholder_1[25]) == 2:
+                        placeholder = "&" + placeholder
+                        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
                     else:
                         pass
             else:
                 pass
         else:
-            placeholder_MP = (placeholder_MP[:25] + str(int(placeholder_MP[25]) - 1) + placeholder_MP[26:])  
-            LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP 
+            placeholder = (placeholder[:25] + str(int(placeholder[25]) - 1) + placeholder[26:])  
+            LINHAS_DADGER[LINHAS_TOTAIS] = placeholder 
     # MP
     if (linhas[0:2]) == "MP":
-        placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-        placeholder_MP = (placeholder_MP[:9] + placeholder_MP[14:])
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        placeholder = (placeholder[:9] + placeholder[14:])
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
     # MT
     elif (linhas[0:2]) == "MT":
-        placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-        placeholder_MP = (placeholder_MP[:14] + placeholder_MP[19:])
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        placeholder = (placeholder[:14] + placeholder[19:])
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
     # FD
     elif (linhas[0:2]) == "FD":
-        placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-        placeholder_MP = (placeholder_MP[:9] + placeholder_MP[14:])
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP    
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        placeholder = (placeholder[:9] + placeholder[14:])
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder    
     # VE
     elif (linhas[0:2]) == "VE":
-        placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-        placeholder_MP = (placeholder_MP[:9] + placeholder_MP[14:])
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        placeholder = (placeholder[:9] + placeholder[14:])
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
     # TI
     elif (linhas[0:2]) == "TI":
         placeholder_RQ = LINHAS_DADGER[LINHAS_TOTAIS] 
@@ -95,7 +90,7 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
     elif (linhas[0:2]) == "RE":
         placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        if (int(placeholder[15]) == 1): # revisar conforme a revisão 
+        if (int(placeholder[15]) == 1): 
            LINHAS_DADGER[LINHAS_TOTAIS] = "&" + placeholder
         else:
             placeholder = (placeholder[:15] + str(int(placeholder[15]) - 1) + placeholder[16:])
@@ -103,7 +98,7 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
     elif (linhas[0:2]) == "HV":
         placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        if (int(placeholder[15]) == 1): # revisar conforme a revisão 
+        if (int(placeholder[15]) == 1):  
            LINHAS_DADGER[LINHAS_TOTAIS] = "&" + placeholder
         else:
             placeholder = (placeholder[:15] + str(int(placeholder[15]) - 1) + placeholder[16:])
@@ -111,7 +106,7 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
     elif (linhas[0:2]) == "HQ":
         placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        if (int(placeholder[15]) == 1): # revisar conforme a revisão 
+        if (int(placeholder[15]) == 1): 
            LINHAS_DADGER[LINHAS_TOTAIS] = "&" + placeholder
         else:
             placeholder = (placeholder[:15] + str(int(placeholder[15]) - 1) + placeholder[16:])
@@ -121,27 +116,25 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
     else:
         for bloco in BLOCOS_RESTRICOES:
             if (linhas[0:2]) == bloco:
-                placeholder_MP = LINHAS_DADGER[LINHAS_TOTAIS] 
-                placeholder_MP_1 = LINHAS_DADGER[LINHAS_TOTAIS + 1]
-                if int(placeholder_MP[10]) == 1:
-                    if placeholder_MP_1[0:2] == bloco and placeholder_MP[4:7] == placeholder_MP_1[4:7]:
-                        if int(placeholder_MP_1[10]) == 2:
-                            placeholder_MP = "&" + placeholder_MP
-                            LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP
+                placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+                placeholder_1 = LINHAS_DADGER[LINHAS_TOTAIS + 1]
+                if int(placeholder[10]) == 1:
+                    if placeholder_1[0:2] == bloco and placeholder[4:7] == placeholder_1[4:7]:
+                        if int(placeholder_1[10]) == 2:
+                            placeholder = "&" + placeholder
+                            LINHAS_DADGER[LINHAS_TOTAIS] = placeholder
                         else:
                             pass
                     else:
                         pass
                 else:
-                    placeholder_MP = (placeholder_MP[:10] + str(int(placeholder_MP[10]) - 1) + placeholder_MP[11:])  
-                    LINHAS_DADGER[LINHAS_TOTAIS] = placeholder_MP 
+                    placeholder = (placeholder[:10] + str(int(placeholder[10]) - 1) + placeholder[11:])  
+                    LINHAS_DADGER[LINHAS_TOTAIS] = placeholder 
     
     LINHAS_TOTAIS += 1  
 
 ARQUIVO_DAGDER.close()
 
-NOVO_ARQUIVO_DADGER = open("C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV2", "w") # um novo arquivo do DADGER.RVO passa a ser criado
+NOVO_ARQUIVO_DADGER = open("C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV%s" %(numero_revisao + 1), "w") # um novo arquivo do DADGER.RVx + 1 é criado
 NOVO_ARQUIVO_DADGER.writelines(LINHAS_DADGER)
 NOVO_ARQUIVO_DADGER.close()
-
-# Fim do Programa 
