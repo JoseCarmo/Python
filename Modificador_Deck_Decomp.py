@@ -1,5 +1,18 @@
-# Atualizador para o Decomp 
+""" Atualizador do arquivo DADGER.RVX, parte do modelo de despacho hidrotérmico Decomp
 
+Dentro do contexto do Planejamento Mensal de Operações (PMO), ocorrem revisões semanais (rv) que são acrescentadas à revisão inicial rv0
+Essa rotina automatiza alterações na estrutura do código do DADGER.RVx, parte do modelo DECOMP 
+arquivo = open('caminho para aquivo alvo', 'modo de leitura') // a arquivo alvo é lido pelo Python e é armazenado dentro de uma lista onde 
+cada item da lista é uma linha da lista. 
+
+No nosso exemplo, se o arquivo alvo possui n linhas:
+arquivo = [linha_1 do arquivo alvo, linha_2 do arquivo alvo, ..., linha_n do arquivo alvo]
+
+A seguir, com o conhecimento do formato do DADGER.RVX, é possível parsear todo o arquivo em busca dos valores a serem alterados e/ou comentados
+para a formação de uma próxima revisão.
+
+A interpretação do restante da estrutura lógica do programa é responsabilidade do leitor.
+"""
 numero_revisao = 0 
 
 ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV%s' %numero_revisao, "r+") # abre o arquivo DADGER.rvX
