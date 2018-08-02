@@ -1,8 +1,23 @@
-# Atualizador para o Decomp 
+""" Atualizador do arquivo DADGER.RVX, parte do modelo de otimização de despacho hidrotérmico Decomp
 
-numero_revisao = 0 
+Dentro do contexto do Planejamento Mensal de Operações (PMO), ocorrem revisões semanais (rv) que são acrescentadas à revisão inicial rv0
+Essa rotina automatiza alterações na estrutura do código do DADGER.RVx, parte do modelo DECOMP 
+arquivo = open('caminho para aquivo alvo', 'modo de leitura') // a arquivo alvo é lido pelo Python e é armazenado dentro de uma lista onde 
+cada item da lista é uma linha da lista. 
 
-ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV%s' %numero_revisao, "r+") # abre o arquivo DADGER.rvX
+No nosso exemplo, se o arquivo alvo possui n linhas:
+arquivo = [linha_1 do arquivo alvo, linha_2 do arquivo alvo, ..., linha_n do arquivo alvo]
+
+A seguir, com o conhecimento do formato do DADGER.RVX, é possível 'parsear' todo o arquivo em busca dos valores a serem alterados e/ou 
+comentados para a formação de uma próxima revisão.
+
+A interpretação do restante da estrutura lógica do programa é responsabilidade do leitor.
+"""
+numero_revisao = 0
+
+caminho_dadger = "C:\\Users\\JoseEustaquio\\Desktop\\rv009"
+
+ARQUIVO_DAGDER = open(caminho_dadger + "\\DADGER.RV%s" %numero_revisao, "r+") # abre o arquivo DADGER.rvX
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
 LINHAS_TOTAIS = 0 # inicializa o contador de linhas
 BLOCOS_RESTRICOES = ["FI", "LU", "FU", "LV", "CV", "LQ", "CQ"]
@@ -104,6 +119,18 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
             placeholder = (placeholder[:15] + str(int(placeholder[15]) - 1) + placeholder[16:])
             LINHAS_DADGER[LINHAS_TOTAIS] = placeholder      
 
+    elif (linhas[0:2]) == "FC" and linhas[4:11] == "NEWV21" :
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder[:15] + "cortesh.dat"
+
+    elif (linhas[0:2]) == "FC" and linhas[4:11] == "NEWCUT" :
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder[:15] + "cortes.dat"
+
+    elif (linhas[0:44]) == "& ARQ. DE VAZOES PREVISTAS - HIDROL => PREVS":
+        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
+        LINHAS_DADGER[LINHAS_TOTAIS] = linhas[0:44] + ".RV%s"%(numero_revisao + 1) + "\n"
+
     elif (linhas[0:2]) == "HQ":
         placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
         if (int(placeholder[15]) == 1): 
@@ -135,6 +162,6 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
 ARQUIVO_DAGDER.close()
 
-NOVO_ARQUIVO_DADGER = open("C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\DEC_ONS_072018_RV0_VE\\DADGER.RV%s" %(numero_revisao + 1), "w") # um novo arquivo do DADGER.RVx + 1 é criado
+NOVO_ARQUIVO_DADGER = open(caminho_dadger + "\\DADGER.RV%s" %(numero_revisao + 1), "w") # um novo arquivo do DADGER.RVx + 1 é criado
 NOVO_ARQUIVO_DADGER.writelines(LINHAS_DADGER)
 NOVO_ARQUIVO_DADGER.close()
