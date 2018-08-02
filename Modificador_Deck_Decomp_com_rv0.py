@@ -32,7 +32,7 @@ Bloco TI -> replicar ultimos valores (OK)
 
 """
 
-ARQUIVO_DAGDER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\REV AGOSTO\\DADGER.RV0', "r+") # abre o arquivo DADGER.rvX
+ARQUIVO_DAGDER = open('C:\\Users\\Samela\\Desktop\\ve_201808_r0\\DEC_ONS_082018_RV0_VE\\DADGER.RV0', "r+") # abre o arquivo DADGER.rvX
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
 LINHAS_TOTAIS = 0 # inicializa o contador de linhas
 BLOCOS_RESTRICOES = ["FI", "LU", "FU", "LV", "CV", "LQ", "CQ"]
@@ -153,6 +153,6 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
 ARQUIVO_DAGDER.close()
 
-NOVO_ARQUIVO_DADGER = open('C:\\Users\\Joseeustaquio\\Downloads\\PMO_deck_preliminar\\REV AGOSTO\\DADGER.RV1', "w") # um novo arquivo do DADGER.RVx + 1 é criado
+NOVO_ARQUIVO_DADGER = open('C:\\Users\\Samela\\Desktop\\ve_201808_r0\\DADGER.RV0', "w") # um novo arquivo do DADGER.RVx + 1 é criado
 NOVO_ARQUIVO_DADGER.writelines(LINHAS_DADGER)
 NOVO_ARQUIVO_DADGER.close()
