@@ -13,11 +13,9 @@ comentados para a formação de uma próxima revisão.
 
 A interpretação do restante da estrutura lógica do programa é responsabilidade do leitor.
 """
-numero_revisao = 0
+numero_revisao = 3
 
-caminho_dadger = "C:\\Users\\JoseEustaquio\\Desktop\\rv009"
-
-ARQUIVO_DAGDER = open(caminho_dadger + "\\DADGER.RV%s" %numero_revisao, "r+") # abre o arquivo DADGER.rvX
+ARQUIVO_DAGDER = open("H:\\BC Mesa\\middle\\Dados de Rodadas\\Agosto\\rv2\\06082018\\DADGER.RV%s" %numero_revisao, "r+") # abre o arquivo DADGER.rvX
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
 LINHAS_TOTAIS = 0 # inicializa o contador de linhas
 BLOCOS_RESTRICOES = ["FI", "LU", "FU", "LV", "CV", "LQ", "CQ"]
@@ -119,18 +117,6 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
             placeholder = (placeholder[:15] + str(int(placeholder[15]) - 1) + placeholder[16:])
             LINHAS_DADGER[LINHAS_TOTAIS] = placeholder      
 
-    elif (linhas[0:2]) == "FC" and linhas[4:11] == "NEWV21" :
-        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder[:15] + "cortesh.dat"
-
-    elif (linhas[0:2]) == "FC" and linhas[4:11] == "NEWCUT" :
-        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        LINHAS_DADGER[LINHAS_TOTAIS] = placeholder[:15] + "cortes.dat"
-
-    elif (linhas[0:44]) == "& ARQ. DE VAZOES PREVISTAS - HIDROL => PREVS":
-        placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
-        LINHAS_DADGER[LINHAS_TOTAIS] = linhas[0:44] + ".RV%s"%(numero_revisao + 1) + "\n"
-
     elif (linhas[0:2]) == "HQ":
         placeholder = LINHAS_DADGER[LINHAS_TOTAIS] 
         if (int(placeholder[15]) == 1): 
@@ -162,6 +148,6 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
 
 ARQUIVO_DAGDER.close()
 
-NOVO_ARQUIVO_DADGER = open(caminho_dadger + "\\DADGER.RV%s" %(numero_revisao + 1), "w") # um novo arquivo do DADGER.RVx + 1 é criado
+NOVO_ARQUIVO_DADGER = open("H:\\BC Mesa\\middle\\Dados de Rodadas\\Agosto\\rv2\\06082018\\DADGER.RV%s" %(numero_revisao + 1), "w") # um novo arquivo do DADGER.RVx + 1 é criado
 NOVO_ARQUIVO_DADGER.writelines(LINHAS_DADGER)
 NOVO_ARQUIVO_DADGER.close()
