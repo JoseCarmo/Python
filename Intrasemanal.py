@@ -14,9 +14,9 @@ comentados para a formação de uma próxima revisão.
  """
 from FuncoesIntrasemanal import *
 
-numero_revisao = 0 
+numero_revisao = 3 
 
-caminho_dadger = "/home/jose/Downloads/NW - DC/ve_201807_r0/DEC_ONS_072018_RV0_VE"
+caminho_dadger = "/home/jose/Downloads/NW - DC/ve_201808_r3/DEC_ONS_082018_RV3_VE"
 
 ARQUIVO_DAGDER = open(caminho_dadger + '/DADGER.RV%s' %numero_revisao, "r+") # abre o arquivo DADGER.rvX
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
@@ -29,7 +29,7 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
         LINHAS_DADGER[LINHAS_TOTAIS] = str(Atualizar_CT(LINHAS_DADGER[LINHAS_TOTAIS], LINHAS_DADGER[LINHAS_TOTAIS + 1]))
 
     # MP ou FD ou VE 
-    if linhas[0:2] == "MP" or linhas[0:2] == "FD" or linhas[0:2] == "VE":
+    elif linhas[0:2] == "MP" or linhas[0:2] == "FD" or linhas[0:2] == "VE":
         LINHAS_DADGER[LINHAS_TOTAIS] = str(Atualizar_MP_FD_VE(linhas))
 
     # MT
