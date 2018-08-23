@@ -106,4 +106,8 @@ def Atualizar_DT(linha):
                 
     return str(linha)
 
+def Atualizar_Arvore(linha):
+        linha = linha[:40] + '259' + "\n"
+        return str(linha)
+
 # Fim

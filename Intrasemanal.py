@@ -73,6 +73,10 @@ for linhas in LINHAS_DADGER: # corre todas as linhas do script
     elif linhas[0:2] == "DT":
         LINHAS_DADGER[LINHAS_TOTAIS] = str(Atualizar_DT(linhas))
 
+    # ÁRVORE
+    elif linhas[0:21] == "& ESTRUTURA DA ARVORE":
+        LINHAS_DADGER[LINHAS_TOTAIS] = str(Atualizar_Arvore(linhas))
+
     # RESTRIÇÕES (LU, FU, LV, CV, HQ, LQ, CQ)
     else:
         for bloco in BLOCOS_RESTRICOES:
