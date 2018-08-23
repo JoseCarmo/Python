@@ -14,7 +14,7 @@ Bloco TI -> replicar ultimos valores (OK) ENTENDI
 """
 numero_revisao = 0 #numero da revisão usada para a revisão 0 do próximo mês
 
-caminho_dadger = "H:\\BC Mesa\\middle\\Dados de Rodadas\\Agosto\\rv0"
+caminho_dadger = "H:\\BC Mesa\\middle\\Dados de Rodadas\\Agosto\\rv4\\DEC_ONS_082018_RV3_VE"
 
 ARQUIVO_DAGDER = open(caminho_dadger + "\\DADGER.RV%s" %numero_revisao, "r+") # abre o arquivo DADGER.rvX
 LINHAS_DADGER = ARQUIVO_DAGDER.readlines() # lê todas as linhas do DAGDER.RVO, incluindo fins de linhas
