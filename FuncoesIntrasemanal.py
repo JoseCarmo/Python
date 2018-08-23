@@ -48,20 +48,15 @@ def Atualizar_Outras_Restricoes(linha_atual, linha_seguinte, bloco):
             if linha_seguinte[0:2] == bloco and linha_atual[4:7] == linha_seguinte[4:7]:
                 if int(linha_seguinte[10]) == 2:
                     linha_atual = "&" + linha_atual
-                    return linha_atual
-                else:
-                    pass
-            else:
-                pass
         else:
             linha_atual = (linha_atual[:10] + str(int(linha_atual[10]) - 1) + linha_atual[11:])  
-        return str(linha_atual) 
+            print(linha_atual)
+        return str(linha_atual)
 
 def Atualizar_CT(linha_atual, linha_seguinte):
         if int(linha_atual[25]) == 1:
             if linha_seguinte[0:2] == "CT" and linha_atual[3:8] == linha_seguinte[3:8]:
                     if int(linha_seguinte[25]) == 2:
-                        print("aqui")
                         linha_atual = "&" + linha_atual
                         return str(linha_atual)
         else:
